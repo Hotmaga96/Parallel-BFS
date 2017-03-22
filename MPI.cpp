@@ -6,6 +6,16 @@ using namespace std;
 
 #define MAX_QUEUE_SIZE 5
 
+int areAllVisited(int visited[], int size)
+{
+	for(int i = 0; i < size; i++)
+	{
+		if(visited[i] == 0)
+			return 0;
+	}
+	return 1;
+}
+
 int main(int argc, char *argv[])
 {
 	//Variables and Initializations
@@ -80,6 +90,12 @@ int main(int argc, char *argv[])
 		cout<<source_vertex<<" ";
 		for(int i = 0; i < MAX_QUEUE_SIZE * no_of_vertices; i++)
 		{
+			//Exit Condition
+			if(areAllVisited(visited, no_of_vertices))
+			{
+				break;
+			}
+			
 			if(bfs_traversal[i] != -1)
 			{
 				if(visited[bfs_traversal[i]] == 0)
