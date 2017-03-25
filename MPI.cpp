@@ -44,10 +44,12 @@ int main(int argc, char *argv[])
 		{
 			cin>>adjacency_matrix[i];
 		}
+		cout<<endl;
 
 		//Entering the Source Vertex
 		cout<<"Enter the Source Vertex\n";
 		cin>>source_vertex;
+		cout<<endl;
 	}
 
 	//Broadcasting the Number of vertices and the source vertex;
@@ -76,6 +78,17 @@ int main(int argc, char *argv[])
 		}
 	}
 
+	//Each Process printing the adjacent nodes found
+	cout<<"Process "<<rank<<": ";
+	for(int i = 0; i < index; i++)
+	{
+		cout<<adjacency_queue[i]<<" ";
+	}
+	cout<<endl;
+
+	//For synchronization
+	MPI_Barrier(MPI_COMM_WORLD);
+
 	//Gathering all the nodes in BFS found by each process
 	MPI_Gather(adjacency_queue, MAX_QUEUE_SIZE, MPI_INT, bfs_traversal, MAX_QUEUE_SIZE, MPI_INT, 0, MPI_COMM_WORLD);
 
@@ -87,6 +100,7 @@ int main(int argc, char *argv[])
 
 	if(rank == 0)
 	{
+		cout<<"\nBFS Traversal: "<<endl;
 		cout<<source_vertex<<" ";
 		for(int i = 0; i < MAX_QUEUE_SIZE * no_of_vertices; i++)
 		{
@@ -95,7 +109,7 @@ int main(int argc, char *argv[])
 			{
 				break;
 			}
-			
+
 			if(bfs_traversal[i] != -1)
 			{
 				if(visited[bfs_traversal[i]] == 0)
