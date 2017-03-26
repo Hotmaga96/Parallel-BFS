@@ -101,7 +101,7 @@ int main(int argc, char *argv[])
 	if(rank == 0)
 	{
 		cout<<"\nBFS Traversal: "<<endl;
-		cout<<source_vertex<<" ";
+		cout<<source_vertex;
 		for(int i = 0; i < MAX_QUEUE_SIZE * no_of_vertices; i++)
 		{
 			//Exit Condition
@@ -114,7 +114,7 @@ int main(int argc, char *argv[])
 			{
 				if(visited[bfs_traversal[i]] == 0)
 				{
-					cout<<bfs_traversal[i]<<" ";
+					cout<<" -> "<<bfs_traversal[i];
 					visited[bfs_traversal[i]] = 1;
 				}
 			}
