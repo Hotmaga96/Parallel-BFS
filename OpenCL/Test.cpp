@@ -95,7 +95,7 @@ int main()
 
 	//Displaying the BFS Traversal
 	cout<<"The BFS Traversal:\n";
-	cout<<source_vertex<<" ";
+	cout<<source_vertex;
 	
 	//Creating the array of visited vertices and initializing it
 	int *visited = (int*)malloc(no_of_vertices * sizeof(int));
@@ -117,7 +117,7 @@ int main()
 		{
 			if(visited[B[i]] == 0)
 			{
-				cout<<B[i]<<" ";
+				cout<<"->"<<B[i];
 				visited[B[i]] = 1;
 			}
 		}
