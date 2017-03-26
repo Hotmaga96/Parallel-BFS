@@ -18,4 +18,11 @@ __kernel void bfs(__global int* adjacency_matrix, __global int* bfs_traversal, i
 			}	
 		}
 	}
+	else
+	{
+		for(i = 0; i < no_of_vertices; i++)
+		{
+			bfs_traversal[id * no_of_vertices + i] = -1;
+		}
+	}
 }
